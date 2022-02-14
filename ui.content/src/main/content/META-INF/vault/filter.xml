@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/golfgame" mode="merge"/>
+    <filter root="/content/golfgame" mode="merge"/>
+    <filter root="/content/dam/golfgame" mode="merge"/>
+    <filter root="/content/experience-fragments/golfgame" mode="merge"/>
+</workspaceFilter>
