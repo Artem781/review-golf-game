@@ -2,5 +2,6 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/golfgame/clientlibs"/>
     <filter root="/apps/golfgame/components"/>
+    <filter root="/apps/golfgame/templates"/>
     <filter root="/apps/golfgame/i18n"/>
 </workspaceFilter>
