@@ -2,12 +2,12 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:description="home-page template. content conf templates"
+          jcr:description="info template. content conf templates"
           jcr:primaryType="cq:Template"
-          jcr:title="home-page template. content conf templates"
+          jcr:title="INFO template. content conf templates"
           allowedPaths="/content(/.*)?"
           ranking="{Long}101">
     <jcr:content
             jcr:primaryType="cq:PageContent"
-            sling:resourceType="golfgame/components/homepage"/>
+            sling:resourceType="golfgame/components/info"/>
 </jcr:root>
