@@ -1,4 +1,4 @@
-package apps.golfgame.components.golfnavcomponent;
+package com.adobe.aem.review.golfgame.core.models;
 
 import java.util.*;
 import java.util.Iterator;
@@ -15,16 +15,33 @@ public class TopNav extends WCMUsePojo {
     // Initializes the navigation
     @Override
     public void activate() throws Exception {
-        rootPage = getCurrentPage().getAbsoluteParent(2);
-
+        rootPage = getCurrentPage().getAbsoluteParent(3);
         if (rootPage == null) {
             rootPage = getCurrentPage();
         }
-
         Iterator<Page> childPages = rootPage.listChildren(new PageFilter(getRequest()));
         while (childPages.hasNext()) {
             items.add(childPages.next());
         }
+        Page p = getCurrentPage();
+        List<Page> pageChildren = getPageChildren(p, 2);
+        pageChildren.clear();
+    }
+
+    public List<Page> getPageChildren(Page currentPage, int rootLevel) {
+
+        List<Page> children = new ArrayList<>();
+        Page rootPage = currentPage.getAbsoluteParent(rootLevel);
+        if (rootPage != null) {
+            Iterator<Page> iteratorChildren = rootPage.listChildren();
+            while (iteratorChildren.hasNext()) {
+                Page child = iteratorChildren.next();
+                if (!child.isHideInNav()) {
+                    children.add(child);
+                }
+            }
+        }
+        return children;
     }
 
     // Returns the navigation items

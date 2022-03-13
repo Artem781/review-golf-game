@@ -3,5 +3,5 @@
     <filter root="/conf/golfgame" mode="merge"/>
     <filter root="/content/golfgame" mode="merge"/>
     <filter root="/content/dam/golfgame" mode="merge"/>
-    <filter root="/content/experience-fragments/golfgame" mode="merge"/>
+    <filter root="/content/experience-fragments/golfgame"/>
 </workspaceFilter>

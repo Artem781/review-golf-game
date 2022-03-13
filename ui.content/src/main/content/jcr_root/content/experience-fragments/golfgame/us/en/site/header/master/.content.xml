@@ -16,15 +16,8 @@
             <navigation
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="golfgame/components/navigation"
-                collectAllPages="false"
                 navigationRoot="/content/golfgame/us/en"
-                skipNavigationRoot="false"
-                structureDepth="1"/>
-            <languagenavigation
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="golfgame/components/languagenavigation"
-                navigationRoot="/content/golfgame/us"
-                structureDepth="2"/>
+                />
             <search
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="golfgame/components/search"
