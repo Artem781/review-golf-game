@@ -8,41 +8,45 @@ import com.day.cq.wcm.api.PageFilter;
 
 import com.adobe.cq.sightly.WCMUsePojo;
 
-public class TopNav extends WCMUsePojo {
-    private List<Page> items = new ArrayList<Page>();
+
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.*;
+import org.apache.sling.models.annotations.injectorspecific.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.*;
+
+
+@Model(adaptables = SlingHttpServletRequest.class)
+public class TopNav {
+
+    private List<Page> items = new ArrayList<>();
+
     private Page rootPage;
+    @Inject
+    private Page currentPage;
 
-    // Initializes the navigation
-    @Override
-    public void activate() throws Exception {
-        rootPage = getCurrentPage().getAbsoluteParent(3);
+    @PostConstruct
+    protected void init() {
+        rootPage = currentPage.getAbsoluteParent(3);
         if (rootPage == null) {
-            rootPage = getCurrentPage();
+            rootPage = currentPage;
         }
-        Iterator<Page> childPages = rootPage.listChildren(new PageFilter(getRequest()));
-        while (childPages.hasNext()) {
-            items.add(childPages.next());
-        }
-        Page p = getCurrentPage();
-        List<Page> pageChildren = getPageChildren(p, 2);
-        pageChildren.clear();
+        Iterator<Page> childPages = rootPage.listChildren();
+        childPages.forEachRemaining((rootPage) -> items.add(rootPage));
     }
 
-    public List<Page> getPageChildren(Page currentPage, int rootLevel) {
-
-        List<Page> children = new ArrayList<>();
-        Page rootPage = currentPage.getAbsoluteParent(rootLevel);
-        if (rootPage != null) {
-            Iterator<Page> iteratorChildren = rootPage.listChildren();
-            while (iteratorChildren.hasNext()) {
-                Page child = iteratorChildren.next();
-                if (!child.isHideInNav()) {
-                    children.add(child);
-                }
-            }
-        }
-        return children;
-    }
 
     // Returns the navigation items
     public List<Page> getItems() {

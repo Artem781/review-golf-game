@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-12-02T17:37:24.544+01:00"
         cq:lastModifiedBy="admin"
-        cq:templateType="/conf/golfgame/settings/wcm/template-types/page"
+        cq:templateType="/conf/golfgame/settings/wcm/template-types/articlepagetemplate"
         jcr:description="Article Page Template"
         jcr:primaryType="cq:PageContent"
         jcr:title="article-page-golfgame-template"

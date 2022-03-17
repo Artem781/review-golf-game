@@ -1,13 +1,4 @@
-<hr>
-<hr>
-
-
-<div data-sly-use.topNav="com.adobe.aem.review.golfgame.core.models.TopNav">
-    <div data-sly-list.item="${topNav.items}">
-        <div>${item.path}</div>
-    </div>
-</div>
-
-
-<hr>
-<hr>
+<div data-sly-use.topNav="com.adobe.aem.review.golfgame.core.models.TopNav"></div>
+<ul data-sly-list.item="${topNav.items}">
+    <li><a href="${item.path}.html">${item.title}</a></li>
+</ul>

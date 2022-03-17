@@ -3,6 +3,5 @@
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="cq:Component"
           jcr:title="Golf Nav Component"
-          sling:resourceSuperType="core/wcm/components/page/v2/page"
           componentGroup="golfgame Sites Project - Content"/>
 
