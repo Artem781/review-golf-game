@@ -4,32 +4,23 @@ import java.util.*;
 import java.util.Iterator;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageFilter;
-
-import com.adobe.cq.sightly.WCMUsePojo;
 
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.*;
-import org.apache.sling.models.annotations.injectorspecific.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.eclipse.jetty.util.StringUtil;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.*;
 
 
-@Model(adaptables = SlingHttpServletRequest.class)
+@Model(adaptables = SlingHttpServletRequest.class,
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TopNav {
+    @ValueMapValue
+    private String deepLevel = "3";
 
     private List<Page> items = new ArrayList<>();
 
@@ -37,16 +28,50 @@ public class TopNav {
     @Inject
     private Page currentPage;
 
+    @ValueMapValue
+    private String title;
+
+    @ValueMapValue
+    private String text;
+
+    private String message;
+
+
     @PostConstruct
     protected void init() {
-        rootPage = currentPage.getAbsoluteParent(3);
+
+        rootPage = currentPage.getAbsoluteParent(Integer.parseInt(deepLevel));
         if (rootPage == null) {
             rootPage = currentPage;
         }
         Iterator<Page> childPages = rootPage.listChildren();
-        childPages.forEachRemaining((rootPage) -> items.add(rootPage));
+        childPages.forEachRemaining((page) -> items.add(page));
     }
 
+    public String getDeepLevel() {
+        return deepLevel;
+    }
+
+    public Page getRootPage() {
+        return rootPage;
+    }
+
+    public Page getCurrentPage() {
+        return currentPage;
+    }
+
+    public String getTitle() {
+
+        return StringUtils.isNotBlank(title) ? title : "Default value here!";
+    }
+
+    public String getText() {
+        return StringUtils.isNotBlank(text) ? text.toUpperCase() : null;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 
     // Returns the navigation items
     public List<Page> getItems() {
@@ -57,4 +82,6 @@ public class TopNav {
     public Page getRoot() {
         return rootPage;
     }
+
+
 }
