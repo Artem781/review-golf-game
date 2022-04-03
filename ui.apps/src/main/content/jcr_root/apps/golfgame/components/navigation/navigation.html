@@ -3,22 +3,9 @@
         <li><a href="${item.path}.html">${item.title}</a></li>
     </ul>
     <div class="cmp-helloworld" data-cmp-is="helloworld">
-        <h2 class="cmp-helloworld__title">${topNav.title}</h2>
-        <div class="cmp-helloworld__item" data-sly-test="${properties.text}">
-            <p class="cmp-helloworld__item-label">Text property:</p>
-            <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${properties.text}</pre>
-        </div>
-        <div class="cmp-helloworld__item" data-sly-test="${topNav.text}">
-            <p class="cmp-helloworld__item-label">Sling model getText() property:</p>
-            <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${topNav.text}</pre>
-        </div>
         <div class="cmp-helloworld__item" data-sly-test="${topNav.deepLevel}">
-            <p class="cmp-helloworld__item-label">Sling model getDeepLevel() property:</p>
-            <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${topNav.deepLevel}</pre>
-        </div>
-        <div class="cmp-helloworld__item" data-sly-test="${topNav.message}">
-            <p class="cmp-helloworld__item-label">Model message:</p>
-            <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="model">${topNav.message}</pre>
+            <pre class="cmp-helloworld__item-output"
+                 data-cmp-hook-helloworld="property">DeepLevel: ${topNav.deepLevel}</pre>
         </div>
     </div>
 </div>
